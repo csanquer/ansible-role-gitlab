@@ -1,0 +1,27 @@
+---
+- name: install APT dependencies
+  apt:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - debian-archive-keyring
+    - apt-transport-https
+    - curl
+    - ca-certificates
+    - wget
+    - openssh-server
+
+- name: add gitlab repository GPG key
+  apt_key:
+    url: "{{ gitlab_apt_keyserver_url }}"
+  when: ansible_lsb.id == 'Debian' or ansible_lsb.id == 'Ubuntu'
+
+- name: add gitlab main repository
+  apt_repository:
+    repo: "{{ item }} {{ gitlab_apt_url }}{{ ansible_lsb.id|lower }}/ {{ ansible_lsb.codename|lower }} main"
+    state: present
+    filename: "gitlab"
+  when: ansible_lsb.id == 'Debian' or ansible_lsb.id == 'Ubuntu'
+  with_items:
+    - deb
+    - deb-src

@@ -1,0 +1,3 @@
+---
+gitlab_apt_url: https://packages.gitlab.com/gitlab/gitlab-ce/
+gitlab_apt_keyserver_url: https://packages.gitlab.com/gitlab/gitlab-ce/gpgkey
