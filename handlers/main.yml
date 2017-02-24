@@ -1,2 +1,5 @@
 ---
-# handlers file for gitlab
+- name: restart gitlab
+  command: gitlab-ctl reconfigure
+  when: gitlab_external_url is not none and gitlab_external_url != ''
+  # failed_when: false

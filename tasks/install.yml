@@ -10,18 +10,31 @@
     - ca-certificates
     - wget
     - openssh-server
+    - postfix
 
 - name: add gitlab repository GPG key
   apt_key:
     url: "{{ gitlab_apt_keyserver_url }}"
-  when: ansible_lsb.id == 'Debian' or ansible_lsb.id == 'Ubuntu'
+  register: gitlab_apt_key_result
 
 - name: add gitlab main repository
   apt_repository:
     repo: "{{ item }} {{ gitlab_apt_url }}{{ ansible_lsb.id|lower }}/ {{ ansible_lsb.codename|lower }} main"
     state: present
     filename: "gitlab"
-  when: ansible_lsb.id == 'Debian' or ansible_lsb.id == 'Ubuntu'
   with_items:
     - deb
     - deb-src
+  register: gitlab_apt_result
+
+- name: apt update list for new gitlab repository
+  apt: update_cache=yes
+  when: gitlab_apt_result.changed or gitlab_apt_key_result.changed
+
+- name: install gitlab-ce
+  apt:
+    name: gitlab-ce
+    state: "{{ gitlab_state|default('present') }}"
+   # long task
+  async: 2000
+  poll: 5

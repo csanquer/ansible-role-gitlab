@@ -1,2 +1,35 @@
 ---
-# defaults file for gitlab
+# Gitlab
+gitlab_state: latest
+
+gitlab_external_url:
+gitlab_time_zone: Paris
+gitlab_email_from:
+gitlab_email_display_name: Gitlab
+
+# SSL
+gitlab_ssl_enabled: false
+gitlab_self_signed_cert: true
+gitlab_ssl_certificate: /etc/gitlab/ssl/#{node['fqdn']}.crt
+gitlab_ssl_certificate_key: /etc/gitlab/ssl/#{node['fqdn']}.key
+
+gitlab_nginx_enable: true
+gitlab_nginx_redirect_http_to_https: false
+gitlab_redirect_http_to_https_port: 80
+
+gitlab_listen_addresses: ['*']
+gitlab_listen_port: 'nil'
+gitlab_listen_https: 'nil'
+
+gitlab_web_server_username: 'gitlab-www'
+gitlab_web_server_group: 'gitlab-www'
+gitlab_web_server_uid: 'nil'
+gitlab_web_server_gid: 'nil'
+gitlab_web_server_shell: '/bin/false'
+gitlab_web_server_home: '/var/opt/gitlab/nginx'
+
+# oauth2 config
+gitlab_omniauth_enable: false
+gitlab_omniauth_allow_single_sign_on: false
+gitlab_omniauth_block_auto_created_users: true
+gitlab_omniauth_providers: []
