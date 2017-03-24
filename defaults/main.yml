@@ -10,8 +10,40 @@ gitlab_email_display_name: Gitlab
 gitlab_root_password:
 gitlab_shared_runners_registration_token:
 
-gitlab_lfs_enabled: false
+gitlab_lfs_enabled: true
 gitlab_lfs_storage_path: "/mnt/storage/lfs-objects"
+
+# usually set to 998
+gitlab_user_uid: 'nil'
+gitlab_user_gid: 'nil'
+
+# usually set to 997
+gitlab_redis_uid: 'nil'
+gitlab_redis_gid: 'nil'
+
+# usually set to 994
+gitlab_registry_uid: 'nil'
+gitlab_registry_gid: 'nil'
+
+# usually set to 997
+gitlab_redis_uid: 'nil'
+gitlab_redis_gid: 'nil'
+
+# usually set to 996
+gitlab_postgresql_uid: 'nil'
+gitlab_postgresql_gid: 'nil'
+
+# usually set to 993
+gitlab_mattermost_uid: 'nil'
+gitlab_mattermost_gid: 'nil'
+
+# usually set to 995
+gitlab_prometheus_uid: 'nil'
+gitlab_prometheus_gid: 'nil'
+
+# usually set to 999
+gitlab_web_server_uid: 'nil'
+gitlab_web_server_gid: 'nil'
 
 # SSL
 gitlab_ssl_enabled: false
@@ -29,13 +61,12 @@ gitlab_listen_https: 'nil'
 
 gitlab_web_server_username: 'gitlab-www'
 gitlab_web_server_group: 'gitlab-www'
-gitlab_web_server_uid: 'nil'
-gitlab_web_server_gid: 'nil'
+
 gitlab_web_server_shell: '/bin/false'
 gitlab_web_server_home: '/var/opt/gitlab/nginx'
 
 # oauth2 config
 gitlab_omniauth_enable: false
-gitlab_omniauth_allow_single_sign_on: false
+gitlab_omniauth_allow_single_sign_on: []
 gitlab_omniauth_block_auto_created_users: true
 gitlab_omniauth_providers: []
